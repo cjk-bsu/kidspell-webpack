@@ -1,0 +1,33 @@
+{    
+    "name": "kidspell-webpack",
+    "description": "An application to help kids with spelling! Developed by the CAST team at Boise State University.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "author": "BSU CAST Team",
+    "icons": {
+        "16": "/resources/images/icon16.png",
+        "48": "/resources/images/icon48.png",
+        "128": "/resources/images/icon128.png"
+    },
+    "action": {
+        "default_title": "kidspell-webpack",
+        "default_popup": "/html/options.html"
+    },
+    "background": {
+        "service_worker": "/background.js",
+        "type": "module"
+    },
+    "permissions": [
+        "activeTab",
+        "identity",
+        "storage",
+        "tabs",
+        "windows"
+    ],
+    "oauth2": {
+        "client_id": "830358857318-86miaqoaapa89cujf2q0oqiee35sfuh1.apps.googleusercontent.com",
+        "scopes": [
+            "https://www.googleapis.com/auth/documents"
+        ]
+    }
+}
