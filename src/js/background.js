@@ -390,7 +390,7 @@ self.addEventListener('message', (event) => {
 
 var dictionary = {};
 
-fetch('resources/dictionary.txt')
+fetch('../resources/dictionary.txt')
     .then(response => response.text())
     .then(words => {
         dictionary = new Set(words.split('\n'))
@@ -449,15 +449,15 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 /**
  * Dictates all functions to occur when focus returns to a Chrome window.
  */
-chrome.windows.onFocusChanged.addListener(async () => {
-    await chrome.tabs.get(activeInfo.tabId, (tab) => {
-        if (tab.url) {
-            setGoogleWorkspaceIDs(tab.url);
-        } else {
-            setGoogleWorkspaceIDs(null);
-        };
-    });
-});
+// chrome.windows.onFocusChanged.addListener(async () => {
+//     await chrome.tabs.get(activeInfo.tabId, (tab) => {
+//         if (tab.url) {
+//             setGoogleWorkspaceIDs(tab.url);
+//         } else {
+//             setGoogleWorkspaceIDs(null);
+//         };
+//     });
+// });
 
 
 // processing extension authentication

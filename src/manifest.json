@@ -1,5 +1,5 @@
 {    
-    "name": "kidspell-webpack",
+    "name": "Kidspell",
     "description": "An application to help kids with spelling! Developed by the CAST team at Boise State University.",
     "version": "1.0.0",
     "manifest_version": 3,
@@ -11,15 +11,16 @@
     },
     "action": {
         "default_title": "kidspell-webpack",
-        "default_popup": "/html/options.html"
+        "default_popup": "/src/html/options.html"
     },
     "background": {
-        "service_worker": "/background.js",
+        "service_worker": "/src/background.js",
         "type": "module"
     },
     "permissions": [
         "activeTab",
         "identity",
+        "scripting",
         "storage",
         "tabs",
         "windows"

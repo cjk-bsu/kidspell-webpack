@@ -6,11 +6,12 @@ module.exports = {
     mode: "development",
     devtool: "cheap-module-source-map",
     entry: {
-        popup: path.resolve(__dirname, "src/js/options.js"),
         background: path.resolve(__dirname, "src/js/background.js"),
+        options: path.resolve(__dirname, "src/js/options.js"),
+        popup: path.resolve(__dirname, "src/js/popup.js")
     },
     output: {
-        path:path.resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "dist/src"),
     },
     module: {
         rules: [
@@ -44,7 +45,7 @@ module.exports = {
     },
     plugins: [
         new HtmlPlugin({
-            title: "options page",
+            title: "options",
             filename: "html/options.html",
             chunks: ["popup"],
         }),
