@@ -3,14 +3,12 @@ const HtmlPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    mode: "development",
-    devtool: "cheap-module-source-map",
     entry: {
         background: { import: path.resolve(__dirname, "src/js/background.js"), filename: 'js/[name].js' },
-        docs_canvas: { import: path.resolve(__dirname, "src/js/docs_canvas.js"), filename: 'js/[name].js' },
         docs_script: { import: path.resolve(__dirname, "src/js/docs_script.js"), filename: 'js/[name].js' },
+        docs_script_temp: { import: path.resolve(__dirname, "src/js/docs_script_temp.js"), filename: 'js/[name].js' },
         options: { import: path.resolve(__dirname, "src/js/options.js"), filename: 'js/[name].js' },
-        popup: { import: path.resolve(__dirname, "src/js/popup.js"), filename: 'js/[name].js' },
+        docs_popup: { import: path.resolve(__dirname, "src/js/docs_popup.js"), filename: 'js/[name].js' },
     },
     module: {
         rules: [
@@ -41,6 +39,13 @@ module.exports = {
                 type: 'asset/resource',
             },
         ]
+    },
+    optimization: {
+        splitChunks: {
+            chunks(chunk) {
+                return chunk.name !== 'docs_popup';
+            }
+        }
     },
     plugins: [
         new HtmlPlugin({
