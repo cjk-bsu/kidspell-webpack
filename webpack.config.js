@@ -6,12 +6,11 @@ module.exports = {
     mode: "development",
     devtool: "cheap-module-source-map",
     entry: {
-        background: path.resolve(__dirname, "src/js/background.js"),
-        options: path.resolve(__dirname, "src/js/options.js"),
-        popup: path.resolve(__dirname, "src/js/popup.js")
-    },
-    output: {
-        path: path.resolve(__dirname, "dist/src"),
+        background: { import: path.resolve(__dirname, "src/js/background.js"), filename: 'js/[name].js' },
+        docs_canvas: { import: path.resolve(__dirname, "src/js/docs_canvas.js"), filename: 'js/[name].js' },
+        docs_script: { import: path.resolve(__dirname, "src/js/docs_script.js"), filename: 'js/[name].js' },
+        options: { import: path.resolve(__dirname, "src/js/options.js"), filename: 'js/[name].js' },
+        popup: { import: path.resolve(__dirname, "src/js/popup.js"), filename: 'js/[name].js' },
     },
     module: {
         rules: [
@@ -47,11 +46,12 @@ module.exports = {
         new HtmlPlugin({
             title: "options",
             filename: "html/options.html",
-            chunks: ["popup"],
+            chunks: ["options"],
         }),
         new HtmlPlugin({
             title: "popup",
             filename: "html/popup.html",
+            chunks: ["popup"],
         }),
         new CopyPlugin({
             patterns: [
@@ -61,4 +61,7 @@ module.exports = {
             ],
         }),
     ],
+    output: {
+        filename: "[name].js"
+    }
 }
