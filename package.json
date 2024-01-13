@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
-    "build": "webpack",
-    "watch": "webpack --watch --progress --config webpack.config.js"
+    "build": "webpack --progress --config webpack.dev.js",
+    "watch": "webpack --watch --progress --config webpack.prod.js"
   },
   "author": "BSU CAST Team",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.10.0"
   }
 }
