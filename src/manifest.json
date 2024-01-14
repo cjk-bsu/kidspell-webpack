@@ -11,10 +11,10 @@
     },
     "action": {
         "default_title": "kidspell-webpack",
-        "default_popup": "/src/html/options.html"
+        "default_popup": "/html/options.html"
     },
     "background": {
-        "service_worker": "/src/background.js",
+        "service_worker": "/js/background.js",
         "type": "module"
     },
     "permissions": [
@@ -30,5 +30,44 @@
         "scopes": [
             "https://www.googleapis.com/auth/documents"
         ]
+    },
+    "web_accessible_resources": [
+        {
+          "resources": [
+            "resources/images/*",
+            "resources/webfonts/*",
+            "resources/dictionary.txt",
+            "src/docs_script.js",
+            "src/docs_popup.js",
+            "src/options.js"
+          ],
+          "matches": ["<all_urls>", "*://docs.google.com/*"]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>", "*://docs.google.com/*"],
+            "all_frames": false,
+            "run_at": "document_start",
+            "js": ["js/options.js"],
+            "world": "MAIN"
+        },
+        {
+            "matches": ["*://docs.google.com/*"],
+            "all_frames": false,
+            "run_at": "document_start",
+            "js": ["js/docs_script.js"],
+            "world": "MAIN"
+        },
+        {
+            "matches": ["*://docs.google.com/*"],
+            "all_frames": false,
+            "run_at": "document_start",
+            "js": ["js/docs_popup.js"],
+            "world": "MAIN"
+        }
+    ],
+    "externally_connectable": {
+        "matches": ["<all_urls>"]
     }
 }
