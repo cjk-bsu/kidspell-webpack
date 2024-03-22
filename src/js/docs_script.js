@@ -7,9 +7,9 @@ const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
 
 console.log("reached here 2");
 
-chrome.scripting.executeScript({
-    target: {tabId : chrome.tabs.Tab()}
-})
+// chrome.scripting.executeScript({
+//     target: {tabId : chrome.tabs.Tab()}
+// })
 
 
 // let  = document.querySelector("[class^='kix-page-paginated']");
@@ -21,39 +21,281 @@ chrome.scripting.executeScript({
 let isRefreshFired = false;
 let currentCursor;
 let currentCursorBbox;
-let currentWindowX;
-let currentWindowY;
+let currentX;
+let currentY;
 let currentWindowRect;
 let currentWindowText;
 
+// let cursor = document.querySelector('#kix-current-user-cursor-caret');
+// let cursorBbox = cursor.getBoundingClientRect();
+// let x = Math.floor(cursorBbox.right);
+// let y = Math.floor(cursorBbox.top);
+// console.log("x = ", x);
+// console.log("y = ", y);
+// const rect = this.getRect(x, y);
 
-
-
-
-
-let appViewEditor = document.querySelector("[class='kix-appview-editor']");
-
-// Retrieve the currently visible page
-let visiblePage = appViewEditor.querySelector("[class^='.kix-page-paginated:not([style*=\"display: none\"])']");
-
-// Check if a visible page is found
-if (visiblePage) {
-    // Get the bounding box of the visible page
-    const boundingBox = visiblePage.getBoundingClientRect();
-
-    // Determine the dimensions and position of the visible portion within the page
-    const visiblePortion = {
-        top: Math.max(boundingBox.top, 0),
-        left: Math.max(boundingBox.left, 0),
-        width: Math.min(boundingBox.width, window.innerWidth),
-        height: Math.min(boundingBox.height, window.innerHeight),
-    };
-
-    console.log('Visible portion:', visiblePortion);
-    // Perform your logic based on the visible portion
-} else {
-    console.log('No visible page found');
+const getCursor = () => {
+    currentCursor = document.querySelector('#kix-current-user-cursor-caret');
 }
+
+const getCursorBbox = () => {
+    if (currentCursor != null) {
+        currentCursorBbox = currentCursor.getBoundingClientRect();
+    } else {
+        return;
+    }
+}
+
+const getXY = () => {
+    if (currentCursorBbox != null) {
+        currentX = Math.floor(currentCursorBbox.right);
+        currentY = Math.floor(currentCursorBbox.top);
+        console.log("x = ", currentX);
+        console.log("y = ", currentY);
+    } else {
+        return;
+    }
+}
+
+const getRect = (x, y) => {
+    //     if (!this.styleElement) {
+    //         this.styleElement = document.createElement("style");
+    //         this.styleElement.id = "enable-pointer-events-on-rect";
+    //         this.styleElement.textContent = [
+    //             ".kix-canvas-tile-content{pointer-events:none!important;}",
+    //             "#kix-current-user-cursor-caret{pointer-events:none!important;}",
+    //             ".kix-canvas-tile-content svg>g>rect{pointer-events:all!important; stroke-width:7px !important;}",
+    //         ].join("\n");
+
+    //         const parent = (document.head || document.documentElement)
+            
+    //         if (parent !== null) {
+    //             parent.appendChild(this.styleElement);
+    //         }
+    //     }
+
+    // this.styleElement.disabled = false;
+    // const rect = document.elementFromPoint(x, y);
+    // this.styleElement.disabled = true;
+
+    // return rect;
+};
+
+const updateCursorVals = () => {
+    getCursor();
+    getCursorBbox();
+    getXY();
+}
+
+updateCursorVals();
+
+window.addEventListener('keydown', function(event) {
+    if (event.key === ' ') {
+        updateCursorVals();
+        isRefreshFired = true;
+    } else {
+        return
+    }
+});
+
+setTimeout(function() {
+    if (!isRefreshFired) {
+        updateCursorVals();
+    } else {
+        isRefreshFired = false;
+    }
+}, 3000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let appViewEditor = document.querySelector("[class='kix-appview-editor']");
+
+// // Retrieve the currently visible page
+// let visiblePage = appViewEditor.querySelector("[class^='.kix-page-paginated:not([style*=\"display: none\"])']");
+
+// // Check if a visible page is found
+// if (visiblePage) {
+//     // Get the bounding box of the visible page
+//     const boundingBox = visiblePage.getBoundingClientRect();
+
+//     // Determine the dimensions and position of the visible portion within the page
+//     const visiblePortion = {
+//         top: Math.max(boundingBox.top, 0),
+//         left: Math.max(boundingBox.left, 0),
+//         width: Math.min(boundingBox.width, window.innerWidth),
+//         height: Math.min(boundingBox.height, window.innerHeight),
+//     };
+
+//     console.log('Visible portion:', visiblePortion);
+//     // Perform your logic based on the visible portion
+// } else {
+//     console.log('No visible page found');
+// }
 
 
 
