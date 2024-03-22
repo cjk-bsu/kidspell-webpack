@@ -53,14 +53,14 @@
             "world": "MAIN"
         },
         {
-            "matches": ["*://docs.google.com/*"],
+            "matches": ["*://docs.google.com/document/d/*"],
             "all_frames": false,
             "run_at": "document_start",
             "js": ["js/docs_script.js"],
             "world": "MAIN"
         },
         {
-            "matches": ["*://docs.google.com/*"],
+            "matches": ["*://docs.google.com/document/d/*"],
             "all_frames": false,
             "run_at": "document_start",
             "js": ["js/docs_popup.js"],
