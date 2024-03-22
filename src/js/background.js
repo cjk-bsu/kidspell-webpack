@@ -384,6 +384,93 @@ self.addEventListener('message', (event) => {
 
 
 
+// const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
+
+// const GOOGLE_DOCS_SCRIPT = {
+//     id: VALID_EDITING_EXT_ID,
+//     matches: ["*://docs.google.com/*"],
+//     allFrames: false,
+//     runAt: "document_start",
+//     world: "MAIN",
+//     js: ["docs_script_temp.js"],
+// };
+
+// // /**
+// //  * Checking if Google Chrome.
+// //  */
+// const registerScripting = async () => {
+//     try {
+//         if (typeof browser !== "undefined") {
+//             await browser.scripting.registerContentScripts([GOOGLE_DOCS_SCRIPT])
+//                 .then(console.log("registration complete"));
+//         } else {
+//             console.log("reached here 0");
+//             await chrome.scripting.registerContentScripts([GOOGLE_DOCS_SCRIPT])
+//                 .then(console.log(chrome.scripting.getRegisteredContentScripts()));
+//         }
+//     } catch (err) {
+//         console.error(`Failed to register content scripts: ${err}`);
+//     }
+// }
+
+// registerScripting();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // getting dictionary
@@ -670,6 +757,40 @@ function checkIfInDictionary() {
 //         getDocumentContent();
 //     };
 // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
