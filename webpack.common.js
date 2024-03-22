@@ -54,9 +54,9 @@ module.exports = {
             chunks: ["options"],
         }),
         new HtmlPlugin({
-            title: "popup",
-            filename: "html/popup.html",
-            chunks: ["popup"],
+            title: "docs_popup",
+            filename: "html/docs_popup.html",
+            chunks: ["docs_popup"],
         }),
         new CopyPlugin({
             patterns: [
