@@ -9,6 +9,8 @@ module.exports = {
         docs_script_temp: { import: path.resolve(__dirname, "src/js/docs_script_temp.js"), filename: 'js/[name].js' },
         options: { import: path.resolve(__dirname, "src/js/options.js"), filename: 'js/[name].js' },
         docs_popup: { import: path.resolve(__dirname, "src/js/docs_popup.js"), filename: 'js/[name].js' },
+        docs_enable_canvas_annotation: { import: path.resolve(__dirname, "src/js/docs_enable_canvas_annotation.js"), filename: 'js/[name].js' },
+        docs_overlay: { import: path.resolve(__dirname, "src/js/docs_overlay.js"), filename: 'js/[name].js' },
     },
     module: {
         rules: [
@@ -20,7 +22,8 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
-                }
+                },
+                type: "javascript/esm",
             },
             {
                 test: /\.css$/i,
@@ -67,6 +70,9 @@ module.exports = {
         }),
     ],
     output: {
-        filename: "[name].js"
+        filename: "[name].js",
+        library: "docs_overlay",
+        libraryTarget: "umd",
+        publicPath: '',
     }
 }
