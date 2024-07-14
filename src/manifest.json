@@ -37,9 +37,11 @@
             "resources/images/*",
             "resources/webfonts/*",
             "resources/dictionary.txt",
-            "src/docs_script.js",
-            "src/docs_popup.js",
-            "src/options.js"
+            "js/docs_enable_canvas_annotation.js",
+            "js/docs_overlay.js",
+            "js/docs_popup.js",
+            "js/docs_script.js",
+            "js/options.js"
           ],
           "matches": ["<all_urls>", "*://docs.google.com/*"]
         }
@@ -53,17 +55,17 @@
             "world": "MAIN"
         },
         {
-            "matches": ["*://docs.google.com/document/d/*"],
+            "matches":["*://docs.google.com/document/*"],
             "all_frames": false,
             "run_at": "document_start",
-            "js": ["js/docs_script.js"],
+            "js": ["js/docs_enable_canvas_annotation.js"],
             "world": "MAIN"
         },
         {
             "matches": ["*://docs.google.com/document/d/*"],
             "all_frames": false,
             "run_at": "document_start",
-            "js": ["js/docs_popup.js"],
+            "js": ["js/docs_script.js", "js/docs_overlay.js"],
             "world": "MAIN"
         }
     ],
