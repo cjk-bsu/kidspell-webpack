@@ -1,63 +1,47 @@
-const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
-// const VALID_EDITING_EXT_ID = chrome.runtime.id;
 
-(() => { window._docs_annotate_canvas_by_ext = VALID_EDITING_EXT_ID; })();
+// const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
+// // const VALID_EDITING_EXT_ID = chrome.runtime.id;
 
-// window._docs_annotate_canvas_by_ext = VALID_EDITING_EXT_ID;
-
-console.log("reached here 2");
-
-// chrome.scripting.executeScript({
-//     target: {tabId : chrome.tabs.Tab()}
-// })
-
-
-// let  = document.querySelector("[class^='kix-page-paginated']");
+// (() => { window._docs_annotate_canvas_by_ext = VALID_EDITING_EXT_ID; })();
 
 
 
+// let isRefreshFired = false;
+// let currentCursor;
+// let currentCursorBbox;
+// let currentX;
+// let currentY;
+// let currentWindowRect;
+// let currentWindowText;
 
+// const getCursor = () => {
+//     currentCursor = document.querySelector('#kix-current-user-cursor-caret');
+// }
 
-let isRefreshFired = false;
-let currentCursor;
-let currentCursorBbox;
-let currentX;
-let currentY;
-let currentWindowRect;
-let currentWindowText;
+// const getCursorBbox = () => {
+//     if (currentCursor != null) {
+//         currentCursorBbox = currentCursor.getBoundingClientRect();
+//     } else {
+//         return;
+//     }
+// }
 
-// let cursor = document.querySelector('#kix-current-user-cursor-caret');
-// let cursorBbox = cursor.getBoundingClientRect();
-// let x = Math.floor(cursorBbox.right);
-// let y = Math.floor(cursorBbox.top);
-// console.log("x = ", x);
-// console.log("y = ", y);
-// const rect = this.getRect(x, y);
+// const getXY = () => {
+//     if (currentCursorBbox != null) {
+//         x = Math.floor(currentCursorBbox.right);
+//         y = Math.floor(currentCursorBbox.top);
+//         console.log("x = ", x);
+//         console.log("y = ", y);
+//         return x, y; 
+//     } else {
+//         return;
+//     }
+// }
 
-const getCursor = () => {
-    currentCursor = document.querySelector('#kix-current-user-cursor-caret');
-}
-
-const getCursorBbox = () => {
-    if (currentCursor != null) {
-        currentCursorBbox = currentCursor.getBoundingClientRect();
-    } else {
-        return;
-    }
-}
-
-const getXY = () => {
-    if (currentCursorBbox != null) {
-        currentX = Math.floor(currentCursorBbox.right);
-        currentY = Math.floor(currentCursorBbox.top);
-        console.log("x = ", currentX);
-        console.log("y = ", currentY);
-    } else {
-        return;
-    }
-}
-
-const getRect = (x, y) => {
+// const getRect = (x, y) => {
+//     if (x == null || y == null) {
+//         return;
+//     }
     //     if (!this.styleElement) {
     //         this.styleElement = document.createElement("style");
     //         this.styleElement.id = "enable-pointer-events-on-rect";
@@ -79,155 +63,125 @@ const getRect = (x, y) => {
     // this.styleElement.disabled = true;
 
     // return rect;
-};
 
-const updateCursorVals = () => {
-    getCursor();
-    getCursorBbox();
-    getXY();
+//     if (!this.styleElement) {
+//         styleElement = document.createElement("style");
+//         styleElement.id = "enable-pointer-events-on-rect";
+//         styleElement.textContent = [
+//             ".kix-canvas-tile-content{pointer-events:none!important;}",
+//             "#kix-current-user-cursor-caret{pointer-events:none!important;}",
+//             ".kix-canvas-tile-content svg>g>rect{pointer-events:all!important; stroke-width:7px !important;}",
+//         ].join("\n");
+
+//         const parent = (document.head || document.documentElement)
+            
+//         if (parent !== null) {
+//             parent.appendChild(this.styleElement);
+//         }
+//     }
+
+//     this.styleElement.disabled = false;
+//     const rect = document.elementFromPoint(x, y);
+//     this.styleElement.disabled = true;
+
+//     return rect;
+// };
+
+// const getCaretIndex = (rect, x, y) => {
+    // const text = rect.getAttribute('aria-label');
+    // const textNode = document.createTextNode(text);
+    // const textElement = this.createTextOverlay(rect, text, textNode);
+
+    // if (!text || !textElement || !textNode) return null;
+
+    // let range = document.createRange();
+    // let start = 0;
+    // let end = textNode.nodeValue.length;
+
+    // while (end - start > 1) {
+    //     const mid = Math.floor((start + end) / 2);
+    //     range.setStart(textNode, mid);
+    //     range.setEnd(textNode, end);
+    //     const rects = range.getClientRects();
+    //     if (this.isPointInAnyRect(x, y, rects)) {
+    //         start = mid;
+    //     } else {
+    //         if (x > range.getClientRects()[0].right) {
+    //             start = end;
+    //         } else {
+    //             end = mid;
+    //         }
+    //     }
+    // }
+
+    // const caretIndex = start;
+    // textElement.remove();
+    // return caretIndex;
+// }
+
+// const createTextOverlay = (rect, text, textNode) => {
+    // if (!rect || rect.tagName !== 'rect') return {};
+
+    // const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    // const transform = rect.getAttribute('transform') || '';
+    // const font = rect.getAttribute('data-font-css') || '';
+
+    // textElement.setAttribute('x', rect.getAttribute('x'));
+    // textElement.setAttribute('y', rect.getAttribute('y'));
+    // textElement.appendChild(textNode);
+    // textElement.style.setProperty('all', 'initial', 'important');
+    // textElement.style.setProperty('transform', transform, 'important');
+    // textElement.style.setProperty('font', font, 'important');
+    // textElement.style.setProperty('text-anchor', 'start', 'important');
+
+    // rect.parentNode.appendChild(textElement);
+
+    // const elementRect = rect.getBoundingClientRect();
+    // const textRect = textElement.getBoundingClientRect();
+    // const yOffset = ((elementRect.top - textRect.top) + (elementRect.bottom - textRect.bottom)) * 0.5;
+    // textElement.style.setProperty('transform', `translate(0px,${yOffset}px) ${transform}`, 'important');
+
+    // return textElement;
+// }
+
+import DocsOverlay from './docs_overlay';
+const docsOverlay = new DocsOverlay();
+
+if (window.trustedTypes && window.trustedTypes.createPolicy) {
+    window.trustedTypes.createPolicy('default', {
+        createHTML: string => string,
+        createScriptURL: string => string,
+        createScript: string => string
+    });
 }
 
-updateCursorVals();
+let textOverlay;
 
-window.addEventListener('keydown', function(event) {
-    if (event.key === ' ') {
-        updateCursorVals();
-        isRefreshFired = true;
-    } else {
-        return
+const updateOverlay = () => {
+    if (docsOverlay != null) {
+        textOverlay = docsOverlay.createOverlay();
     }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    let editingIFrame = document.querySelector("iframe[class*='docs-texteventtarget-iframe']");
+
+    if(editingIFrame != null) {
+        console.log("loaded iframe");
+        editingIFrame.contentDocument.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                console.log("spacebar pressed");
+                // updateOverlay();
+            }
+        }, false);
+    };
 });
 
-setTimeout(function() {
-    if (!isRefreshFired) {
-        updateCursorVals();
-    } else {
-        isRefreshFired = false;
-    }
+setInterval(() => {
+    console.log("timeout")
 }, 3000);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// updateOverlay();
 
 
 
@@ -296,11 +250,6 @@ setTimeout(function() {
 // } else {
 //     console.log('No visible page found');
 // }
-
-
-
-
-
 
 
 
@@ -416,30 +365,6 @@ setTimeout(function() {
 
 //     return text;
 // }
-
-
-
-
-
-
-
-
-// updateCursorVals();
-
-// document.body.addEventListener('keydown', function(event) {
-//     if (event.key === ' ') {
-//         updateCursorVals();
-//         isRefreshFired = true;
-//     }
-// });
-
-// setTimeout(function() {
-//     if (!isRefreshFired) {
-//         updateCursorVals();
-//     } else {
-//         isRefreshFired = false;
-//     }
-// }, 3000);
 
 
 
