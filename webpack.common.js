@@ -6,7 +6,6 @@ module.exports = {
     entry: {
         background: { import: path.resolve(__dirname, "src/js/background.js"), filename: 'js/[name].js' },
         docs_script: { import: path.resolve(__dirname, "src/js/docs_script.js"), filename: 'js/[name].js' },
-        docs_script_temp: { import: path.resolve(__dirname, "src/js/docs_script_temp.js"), filename: 'js/[name].js' },
         options: { import: path.resolve(__dirname, "src/js/options.js"), filename: 'js/[name].js' },
         docs_popup: { import: path.resolve(__dirname, "src/js/docs_popup.js"), filename: 'js/[name].js' },
         docs_enable_canvas_annotation: { import: path.resolve(__dirname, "src/js/docs_enable_canvas_annotation.js"), filename: 'js/[name].js' },
@@ -74,5 +73,8 @@ module.exports = {
         library: "docs_overlay",
         libraryTarget: "umd",
         publicPath: '',
+    },
+    externals: {
+        chrome: 'chrome',
     }
 }
