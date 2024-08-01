@@ -16,7 +16,7 @@
 - keywords: leave blank
 - license: default (MIT) or as appropriate
 
-    #### Type `yes` to complete initialization.
+    #### Press <kbd>Enter</kbd> to select `yes` and complete initialization.
 
 ### 3. Also in the main project directory, install necessary module and package dependencies with all but react and react-dom as dev dependencies.
 - #### Packages
@@ -61,6 +61,34 @@
 
     <br />
 
+### 4. Generate a distribution file to load for testing or publish to the web store following the steps as detailed in the [Generating a Distribution File](#generating-a-distribution-file) section below.
+
+<br />
+
+### 5. On [Google's Cloud Console](https://console.cloud.google.com/), create new OAuth 2.0 Client ID Credentials and update the current Client ID in the `manifest.json` file.
+
+1. #### Create new OAuth Client ID.
+    - #### Type: Chrome Extension
+    - #### Name: User Choice
+    - #### Item ID: Chrome Extension ID 
+
+        This Chrome Extension ID can be found in `Details` tab created once the `dist` directory of an unpacked extension is loaded into the `My Extensions` page on Google Chrome. More on generating said directory is below.
+
+    - #### <ins>**IF PUBLISHING To Google Chrome Web Store:**</ins> 
+
+        App ownership can be verified to the applicable Google account hosting the Chrome Extension, once published.
+
+2. #### Update existing Client ID in `manifest.json` file.
+
+    Replace the string in the `client_id` section under the `oauth2` header of the `manifest.json` file with the Client ID generated after the step above.
+
+    <ins>**NOTE:**</ins> A new distribution file will need to be generated after updating the OAuth 2.0 Client ID for the extension to be functional.
+
+<br />
+
+### After following the steps above, the Chrome Extension `dist` directory should be ready for testing or publishing, provided it is complete and functional.
+
+<br />
 
 ## Generating a Distribution File
 
