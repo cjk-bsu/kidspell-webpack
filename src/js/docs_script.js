@@ -164,17 +164,22 @@ const updateOverlay = () => {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    let editingIFrame = document.querySelector("iframe[class*='docs-texteventtarget-iframe']");
-
-    if(editingIFrame != null) {
-        console.log("loaded iframe");
-        editingIFrame.contentDocument.addEventListener('keydown', function(event) {
-            if (event.code === 'Space') {
-                console.log("spacebar pressed");
-                // updateOverlay();
+    let iframeLoaded = false;
+    const observer = new MutationObserver(() => {
+        if (!iframeLoaded) {
+            let editingIFrame = document.querySelector("iframe[class*='docs-texteventtarget-iframe']");
+            if (editingIFrame && editingIFrame.contentDocument) {
+                console.log("loaded iframe");
+                editingIFrame.contentDocument.addEventListener('keydown', function(event) {
+                    if (event.code === 'Space') {
+                        console.log("spacebar pressed");
+                    }
+                }, false);
+                iframeLoaded = true;
             }
-        }, false);
-    };
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 });
 
 setInterval(() => {
@@ -182,10 +187,6 @@ setInterval(() => {
 }, 3000);
 
 // updateOverlay();
-
-
-
-
 
 
 
