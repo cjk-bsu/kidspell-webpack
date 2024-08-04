@@ -65,18 +65,34 @@
 
 <br />
 
-### 5. On [Google's Cloud Console](https://console.cloud.google.com/), create new OAuth 2.0 Client ID Credentials and update the current Client ID in the `manifest.json` file.
+### 5. On [Google's Cloud Console](https://console.cloud.google.com/), update the existing OAuth 2.0 Client ID Credentials to the recognize the newly generated Chrome Extension ID or create new OAuth 2.0 Client ID Credentials and update the current Client ID in the `manifest.json` file.
+
+#### <ins>**UPDATE EXISTING OAuth 2.0 CLIENT CREDENTIALS**</ins>
+
+1. #### Open the previously created, applicable OAuth 2.0 Client ID in the editing pane.
+
+2. #### Change the Item ID to reflect the new Chrome Extension ID.
+    
+    This Chrome Extension ID can be found in `Details` tab of the loaded Chrome Extension on the `My Extensions` page in Google Chrome and is  generated once the `dist` directory of an unpacked extension is loaded. More on generating said directory is below.
+
+3. #### Press <kbd>SAVE</kbd> to keep the changes and continue using the same Client ID credentials, no changes to the `manifest.json` file required.
+
+#### However, if generating a new extension instance (e.g. if the original extension instance is not owned by the user's Google Account) or publishing on the Chrome Web Store, the following process will need to be followed to generate new Client ID Credentials and update them in the `manifest.json` file, locally only.
+
+#### <ins>**CREATING NEW OAuth 2.0 CLIENT CREDENTIALS**</ins>
 
 1. #### Create new OAuth Client ID.
     - #### Type: Chrome Extension
     - #### Name: User Choice
     - #### Item ID: Chrome Extension ID 
 
-        This Chrome Extension ID can be found in `Details` tab created once the `dist` directory of an unpacked extension is loaded into the `My Extensions` page on Google Chrome. More on generating said directory is below.
+        As above, this Chrome Extension ID can be found in `Details` tab of the loaded Chrome Extension on the `My Extensions` page in Google Chrome and is  generated once the `dist` directory of an unpacked extension is loaded. More on generating said directory is below.
 
     - #### <ins>**IF PUBLISHING To Google Chrome Web Store:**</ins> 
 
         App ownership can be verified to the applicable Google account hosting the Chrome Extension, once published.
+
+    - #### Press <kbd>SAVE</kbd> to generate the new credentials.
 
 2. #### Update existing Client ID in `manifest.json` file.
 
