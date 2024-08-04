@@ -186,6 +186,8 @@ setInterval(() => {
     console.log("timeout")
 }, 3000);
 
+console.log("version #1");
+
 // updateOverlay();
 
 
