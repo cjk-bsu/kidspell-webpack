@@ -4,9 +4,8 @@
   "description": "An application to help kids with spelling! Developed by the CAST team at Boise State University.",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
-    "build": "webpack --progress --config webpack.dev.js",
-    "watch": "webpack --watch --progress --config webpack.prod.js"
+    "watch": "webpack --watch --progress --config webpack.dev.js",
+    "build": "webpack --progress --config webpack.prod.js"
   },
   "author": "BSU CAST Team",
   "license": "MIT",

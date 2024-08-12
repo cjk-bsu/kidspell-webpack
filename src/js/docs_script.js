@@ -182,11 +182,25 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(document.body, { childList: true, subtree: true });
 });
 
-setInterval(() => {
-    console.log("timeout")
-}, 3000);
+// document.addEventListener('DOMContentLoaded', function () {
+//     let editingIFrame = document.querySelector("iframe[class*='docs-texteventtarget-iframe']");
 
-console.log("version #1");
+//     if(editingIFrame != null) {
+//         console.log("loaded iframe");
+//         editingIFrame.contentDocument.addEventListener('keydown', function(event) {
+//             if (event.code === 'Space') {
+//                 console.log("spacebar pressed");
+//                 // updateOverlay();
+//             }
+//         }, false);
+//     };
+// });
+
+// setInterval(() => {
+//     console.log("timeout")
+// }, 3000);
+
+console.log("docs_script -- version: 1");
 
 // updateOverlay();
 

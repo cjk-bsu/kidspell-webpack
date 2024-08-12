@@ -14,7 +14,7 @@ self.addEventListener('message', (event) => {
 
 })
 
-
+console.log("service worker -- version: 1");
 
 
 
