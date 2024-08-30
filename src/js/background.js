@@ -14,7 +14,7 @@ self.addEventListener('message', (event) => {
 
 })
 
-console.log("service worker -- version: 1");
+console.log("service worker -- version: 13");
 
 
 
@@ -483,6 +483,21 @@ fetch('../resources/dictionary.txt')
         dictionary = new Set(words.split('\n'))
     });
 
+// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+//     if (request.action === "checkWord") {
+//         const params = new URLSearchParams({ word: request.word });
+//         console.log(params.get("word"));
+//         if (!dictionary.has(params.get("word").toUpperCase())) {
+//             const url = `https://cast.boisestate.edu/test/splchk.php?word=${params.get("word")}&max=5`
+//             fetch(url, {
+//                 method: "GET"
+//             })
+//             .then(response => response.json())
+//             .then(data => sendResponse(data));
+//         };
+//     };
+// });
+
 
 // //to review 
 
@@ -726,24 +741,56 @@ async function getDocumentContent() {
 
 
 
-function checkIfInDictionary() {
-    if (docContentWords != null) {
-        docContentWords.forEach(word => {
-            if (!dictionary.has(word.toUpperCase())) {
-                const url = `https://cast.boisestate.edu/test/splchk.php?word=${word}&max=5`
-                fetch(url, {
-                    method: "GET"
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("incorrect word: " + data.original)
-                    console.log("suggested corrections: " + data.suggestions)
-                });
-            };
-        });
-    };
-};
+// function checkIfInDictionary() {
+//     if (docContentWords != null) {
+//         docContentWords.forEach(word => {
+//             if (!dictionary.has(word.toUpperCase())) {
+//                 const url = `https://cast.boisestate.edu/test/splchk.php?word=${word}&max=5`
+//                 fetch(url, {
+//                     method: "GET"
+//                 })
+//                 .then(response => response.json())
+//                 .then(data => {
+//                     console.log("incorrect word: " + data.original)
+//                     console.log("suggested corrections: " + data.suggestions)
+//                 });
+//             };
+//         });
+//     };
+// };
 
+// chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+//     if (request.action === "checkWord") {
+//         const params = new URLSearchParams({ word: request.word });
+//         console.log(params.get("word"));
+//         if (!dictionary.has(params.get("word").toUpperCase())) {
+//             const url = `https://cast.boisestate.edu/test/splchk.php?word=${params.get("word")}&max=5`
+//             fetch(url, {
+//                 method: "GET"
+//             })
+//             .then(response => response.json())
+//             .then(data => sendResponse(data));
+//         };
+//     };
+// });
+
+
+
+// function checkIfInDictionary(word) {
+//     if (word != null) {
+//         if (!dictionary.has(word.toUpperCase())) {
+//             const url = `https://cast.boisestate.edu/test/splchk.php?word=${word}&max=5`
+//             fetch(url, {
+//                 method: "GET"
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 console.log("incorrect word: " + data.original)
+//                 console.log("suggested corrections: " + data.suggestions)
+//             });
+//         };
+//     };
+// };
 
 
 
