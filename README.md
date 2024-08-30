@@ -2,10 +2,6 @@
 
 ## An application to help kids with spelling! Developed by the CAST team at Boise State University.
 
-## Overview
-
-###
-
 ## Setting Up the Development Environment
 ### 1. Clone this project into a local directory from its main repository.
 
