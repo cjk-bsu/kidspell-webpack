@@ -1,5 +1,19 @@
+// ==UserScript==
+// @name        docs_script
+// @version     1.0
+// @match       https://docs.google.com/document/d/*
+// @run-at      document-start
+// @grant       none
+// ==/UserScript==
 
 // const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
+// const VALID_EDITING_EXT_ID = chrome.runtime.id;
+
+// window._docs_annotate_canvas_by_ext = VALID_EDITING_EXT_ID;
+
+
+// const VALID_EDITING_EXT_ID = "ocnjkingnoccghefojojhknfnpmegmnc";
+const VALID_EDITING_EXT_ID = "hoinenocdmfldbigmcpmnbdchckgbcho";
 // // const VALID_EDITING_EXT_ID = chrome.runtime.id;
 
 // (() => { window._docs_annotate_canvas_by_ext = VALID_EDITING_EXT_ID; })();
@@ -173,8 +187,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 editingIFrame.contentDocument.addEventListener('keydown', function(event) {
                     if (event.code === 'Space') {
                         console.log("spacebar pressed");
+                        updateOverlay();
+                        getText();
                     }
                 }, false);
+                // editingIFrame.contentDocument.addEventListener('scroll', function(event) {
+
+                // })
                 iframeLoaded = true;
             }
         }
@@ -198,11 +217,109 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // setInterval(() => {
 //     console.log("timeout")
-// }, 3000);
+//     getBbox();
+// }, 10000);
 
-console.log("docs_script -- version: 1");
+// function getEditorBoundingBox() {
+//     // Get the editor element
+//     const editor = document.querySelector('.kix-appview-editor');
+  
+//     // Get the bounding box
+//     const rect = editor.getBoundingClientRect();
+  
+//     // Return the coordinates and dimensions
+//     console.log("x: ", rect.left, "y: ", rect.top, "width: ", rect.width, "height: ", rect.height);
+
+//     // return {
+//     //   x: rect.left,
+//     //   y: rect.top,
+//     //   width: rect.width,
+//     //   height: rect.height
+//     // };
+//   }
+
+console.log("docs_script -- version: 38");
 
 // updateOverlay();
+
+
+
+
+
+await new Promise(resolve => window.addEventListener('DOMContentLoaded', resolve));
+
+// const contentFrame = document.querySelector('.docs-texteventtarget-iframe').contentDocument;
+
+function getText() {
+    console.log("getting text");
+    const rects = document.querySelectorAll('div.kix-canvas-tile-content > svg > g > rect');
+    console.log(Array.from(rects, r => r.ariaLabel).join('\n'));
+    return Array.from(rects, r => r.ariaLabel).join('\n');
+}
+
+// function getSelection() {
+//     const contentDiv = contentFrame.querySelector('div[aria-label="Document content"]');
+//     contentDiv.dispatchEvent(new Event('copy'));
+//     const nodes = contentDiv.firstChild?.children || [];
+//     return Array.from(nodes, c => c.innerText).join('\n');
+// }
+
+// function insertText(text) {
+//     for (let i=0; i < text.length; i++){
+//         const keyEvent = new KeyboardEvent("keypress", {charCode: text.codePointAt(i)})
+//         contentFrame.dispatchEvent(keyEvent);
+//     }
+// }
+
+// window.docs_script = {getText}
+
+let docContentWords = null;
+let wordArray = [];
+
+function getWords() {
+    let docWords = getText().split(' ');
+
+    docWords.forEach((word) => {
+        const strippedWord = word.replace(/[^a-zA-Z0-9]+$/, '');
+        wordArray.push(strippedWord);
+    });
+
+    console.log(wordArray);
+
+    docContentWords = wordArray;
+
+    // checkIfInDictionary();
+}
+
+// function checkIfInDictionary() {
+//     if (docContentWords != null) {
+//         docContentWords.forEach(word => {
+//             chrome.runtime.sendMessage(VALID_EDITING_EXT_ID, { action: "checkWord", word: word }, function(data) {
+//                 console.log("incorrect word: " + data.original);
+//                 console.log("suggested corrections: " + data.suggestions);
+//             });
+//         });
+//     };
+// };
+
+
+
+getWords();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
